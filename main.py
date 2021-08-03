@@ -17,7 +17,7 @@ async def on_ready():
     if message.author == client.user:
       return
 
-    if message.content.startswith('lz;hello'):
+    if message.content.startswith('mirsys;hello'):
       await message.channel.send('Hello there.')
 
 client.run(os.environ['TOKEN'])    
