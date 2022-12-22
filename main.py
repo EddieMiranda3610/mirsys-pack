@@ -19,11 +19,14 @@ async def on_ready():
 
   print('Now logged in as {0.user}'.format(client))
   print('Miranda Notifier Version Python Mode 0.3.0')
-  print('(C) 2018 - 2021 Eddie Miranda.')
+  print('(C) 2018 - 2022 Eddie Miranda.')
+  print('(C) 2014 - 2022 Maria Le.')
   print('No part of this program shall be copied, modified, transmitted, reused, or otherwise distributed without permission from either copyright owner.')
-  print('This application is currently under development. If you would like to assist in the process: feel free to message us on Discord.')
-  print('Our Discord Handles:')
-  print('EddieMiranda2000#1959')
+  print('This application is currently under development. If you would like to assist in the process: feel free to message us.')
+  print('Our Social Handles:')
+  print('Reddit: Moist_Programmer_514 (primary handle if private messages must be sent through this or other handles to either person mentioned in the copyright statement)')
+  print('Discord: EddieMiranda2000#1959')
+  print('Guilded: EddieMiranda1640')
   while True:
     try:
       for member in client.get_guild(851474242402385970).members:
