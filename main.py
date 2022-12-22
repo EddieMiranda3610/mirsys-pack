@@ -58,7 +58,7 @@ async def on_ready():
       await message.content.send([str(message.author)], ': you currently at level ', ["level"], ' and need ' [100 - "xp"], ' to advacnce to the next level.')
     elif message.content.startswith('ms;cmds'):
       {
-        await message.content.send('Here are the commands: \n''ms;cmds -- Prints this command list.\n' "ms;hello -- Makes Lauren say 'Hello there' back to the member.\n" "ms;level-xp -- Shows the member's level and amount of experience (XP) needed to advance to the next level.\n" "ms;updatexp - Updates the experience of all members of the server (Bot Owner Only)")
+        await message.content.send('Here are the commands: \n''ms;cmds -- Prints this command list.\n' "ms;hello -- Makes Miranda say 'Hello there' back to the member.\n" "ms;level-xp -- Shows the member's level and amount of experience (XP) needed to advance to the next level.\n" "ms;updatexp - Updates the experience of all members of the server (Bot Owner Only)")
       }
 
 client.run(os.environ['TOKEN'])
