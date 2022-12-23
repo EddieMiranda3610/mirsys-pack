@@ -1,5 +1,7 @@
 import guilded
+import os
 import json
+from guilded.ext import commands
 
 m = {}
 
@@ -18,21 +20,21 @@ async def on_ready():
 
   print('Now logged in as {0.user}'.format(client))
   print('Miranda Notifier Version Python Mode 0.1.0')
-  print('(C) 2018 - 2022 Eddie Miranda.')
-  print('(C) 2014 - 2022 Maria Le.')
+  print('(C) 2017 - 2022 Eddie Miranda.')
+  print('(C) 2019 - 2022 Maria Le.')
   print('No part of this program shall be copied, modified, transmitted, reused, or otherwise distributed without permission from either copyright owner.')
   print('This application is currently under development. If you would like to assist in the process: feel free to message us.')
   print('Our Social Handles:')
-  print('Reddit: Moist_Programmer_514 (primary handle if private messages must be sent through this or other handles to either person mentioned in the copyright statement)')
-  print('Discord: EddieMiranda2000#1959')
+  print('Reddit: Moist_Programmer_514')
   print('Guilded: EddieMiranda1640')
+  print('Discord: EddieMiranda2000#1959')
   while True:
     try:
       for member in client.get_guild(851474242402385970).members:
         m[str(member.id)]["messageCountdown"] -= 1
     except:
         pass
-
+  bot = commands.Bot(command_prefix='mir;')
   @client.event
   async def on_message(message):
     global m
@@ -48,19 +50,22 @@ async def on_ready():
     if message.author == client.user:
       return
 
-    if message.content.startswith('ms;updatexp') and message.author.id == 732626677947170928:
-      with open('users.json' 'w') as f:
-        f.write(json.dumps(m))
-        f.close()
-    elif message.content.startswith('ms;hello'):
-      {
-        await message.channel.send('Hello there.')
-      }
-    elif message.content.startswith('ms;level-xp'):
-      await message.content.send([str(message.author)], ': you currently at level ', ["level"], ' and need ' [100 - "xp"], ' to advacnce to the next level.')
-    elif message.content.startswith('ms;cmds'):
-      {
-        await message.content.send('Here are the commands: \n''ms;cmds -- Prints this command list.\n' "ms;hello -- Makes Miranda say 'Hello there' back to the member.\n" "ms;level-xp -- Shows the member's level and amount of experience (XP) needed to advance to the next level.\n" "ms;updatexp - Updates the experience of all members of the server (Bot Owner Only)")
-      }
+    @bot.command()
+    async def updatexp(ctx):
+      if message.author.id == 732626677947170928:
+        with open('users.json' 'w') as f:
+          f.write(json.dumps(m))
+          f.close()
+    @bot.command()
+    async def hello(ctx):
+      await ctx.send('Hello there.')
 
-client.run('token')
+    @bot.command()
+    async def levelxp(ctx):
+      await ctx.send([str(message.author)], ': you currently at level ', ["level"], ' and need ' [100 - "xp"], ' to advacnce to the next level.')
+
+    @bot.command()
+    async def cmdlist(ctx):
+        ctx.send('Here are the commands: \n''mir;cmds -- Prints this command list.\n' "mir;hello -- Makes Miranda say 'Hello there' back to the member.\n" "mir;levelxp -- Shows the member's level and amount of experience (XP) needed to advance to the next level.\n" "mir;updatexp - Updates the experience of all members of the server (Bot Owner Only).")
+
+client.run(os.environ['TOKEN'])
