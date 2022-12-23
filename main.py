@@ -1,10 +1,9 @@
-import discord
-import os
+import guilded
 import json
 
 m = {}
 
-client = discord.Client()
+client = guilded.Client()
 
 @client.event
 async def on_ready():
@@ -18,7 +17,7 @@ async def on_ready():
       m[str(member.id)] = {"xp" : 0, "messageCountdown" : 0}
 
   print('Now logged in as {0.user}'.format(client))
-  print('Miranda Notifier Version Python Mode 0.3.0')
+  print('Miranda Notifier Version Python Mode 0.1.0')
   print('(C) 2018 - 2022 Eddie Miranda.')
   print('(C) 2014 - 2022 Maria Le.')
   print('No part of this program shall be copied, modified, transmitted, reused, or otherwise distributed without permission from either copyright owner.')
@@ -64,4 +63,4 @@ async def on_ready():
         await message.content.send('Here are the commands: \n''ms;cmds -- Prints this command list.\n' "ms;hello -- Makes Miranda say 'Hello there' back to the member.\n" "ms;level-xp -- Shows the member's level and amount of experience (XP) needed to advance to the next level.\n" "ms;updatexp - Updates the experience of all members of the server (Bot Owner Only)")
       }
 
-client.run(os.environ['TOKEN'])
+client.run('token')
